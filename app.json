@@ -1,0 +1,100 @@
+{
+    "id": "com.internet",
+    "version": "0.1.2",
+    "compatibility": "*",
+    "name": {
+        "en": "HTTP request actions"
+    },
+    "description": {
+      "en": "HTTP request actions for flows"
+    },
+    "author": {
+        "name": "Erik van Dongen",
+        "email": "gdvandongen@gmail.com"
+    },
+    "images": {
+      "large": "./assets/images/large.jpg",
+      "small": "./assets/images/small.jpg"
+    },
+    "category": "internet",
+    "dependencies": {
+      "request": "*"
+    },
+    "flow": {
+    "triggers": [
+        {
+            "id": "http_get",
+            "title": {
+                "en": "Name of the request",
+                "nl": "Naam van de request"
+            }, "args": [
+          {
+            "name": "get_value",
+            "type": "text",
+            "placeholder": {
+              "en": "name of the request",
+              "nl": "naam van de request"
+            }
+          }
+          ]
+        }
+    ],
+      "actions": [
+        {
+          "id": "http_get",
+          "title": {
+            "en": "HTTP Get"
+          },
+          "args": [
+            {
+              "name": "url",
+              "type": "text",
+              "placeholder": {
+                "en": "http://url/"
+              }
+            }
+          ]
+        },{
+          "id": "http_post_json",
+          "title": {
+            "en": "HTTP Post JSON"
+          },
+          "args": [
+            {
+               "name": "url",
+               "type": "text",
+               "placeholder": {
+                 "en": "http://url/"
+               }
+            },{
+              "name": "data",
+              "type": "text",
+              "placeholder": {
+                "en": "{\"JSON\": \"formatted data\"}"
+              }
+            }
+          ]
+        },{
+          "id": "http_put_json",
+          "title": {
+            "en": "HTTP Put Json"
+          },
+          "args": [
+            {
+               "name": "url",
+               "type": "text",
+               "placeholder": {
+                 "en": "http://url/"
+               }
+            },{
+              "name": "data",
+              "type": "text",
+              "placeholder": {
+                "en": "{\"JSON\": \"formatted data\"}"
+              }
+            }
+          ]
+        }
+      ]
+    }
+}
