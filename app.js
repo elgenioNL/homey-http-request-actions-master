@@ -1,13 +1,27 @@
 "use strict";
 var latest_get;
+var latest_value;
 var port = 9090;
 
 function get_flow(){
 	var request = require('request');
 	var express = require('express');
 	var app = express();
-	app.get('/:value', function (req, res) {
-			latest_get = req.params.value;
+
+	//listen for name and value
+	app.get('/:name/:value', function (req, res) {
+			latest_get = req.params.name;
+			latest_value = req.params.value;
+			Homey.manager('flow').trigger('http_get_value',{
+    		value: latest_value
+			});
+			Homey.log("Request named: "+latest_get+" with value: "+latest_value);
+			res.send('OK: '+latest_value);
+		});
+
+	//listen for name
+	app.get('/:name', function (req, res) {
+			latest_get = req.params.name;
 			Homey.manager('flow').trigger('http_get');
 		 	Homey.log("Request named: "+latest_get);
 			res.send('OK');
@@ -18,11 +32,22 @@ function get_flow(){
 	  var port = server.address().port
 	  Homey.log("HTTP Api listening at: "+ port)
 	})
-
 	Homey.manager('flow').on('trigger.http_get', function( callback, args ){
 			 // Check if event triggerd is equal to event send in flow card
-			 if(args.get_value === latest_get){
+			 //Homey.log(args);
+			 if(args.get_name === latest_get){
 					Homey.log("Flow triggered: "+latest_get);
+					callback( null, true);
+			 } else {
+				 callback( null, false);
+			 }
+		});
+
+	Homey.manager('flow').on('trigger.http_get_value', function( callback, args ){
+			 // Check if event triggerd is equal to event send in flow card
+			 //Homey.log(args);
+			 if(args.get_name === latest_get){
+					Homey.log("Flow value triggered: "+latest_get);
 					callback( null, true);
 			 } else {
 				 callback( null, false);

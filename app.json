@@ -1,3 +1,4 @@
+
 {
     "id": "com.internet",
     "version": "0.1.2",
@@ -25,17 +26,45 @@
         {
             "id": "http_get",
             "title": {
-                "en": "Name of the request",
-                "nl": "Naam van de request"
+                "en": "Simple request",
+                "nl": "Simpel request"
             }, "args": [
           {
-            "name": "get_value",
+            "name": "get_name",
             "type": "text",
             "placeholder": {
-              "en": "name of the request",
-              "nl": "naam van de request"
+              "en": "Name of the request",
+              "nl": "Naam van de request"
             }
           }
+          ]
+        },
+        {
+            "id": "http_get_value",
+            "title": {
+                "en": "Request with value",
+                "nl": "Request met waarde"
+            },
+            "tokens": [
+                        {
+                            "name": "value",
+                            "title": {
+                                "en": "value"
+                            },
+                            "example": {
+                                "en": "5"
+                            }
+                        }
+                    ]
+            ,"args": [
+              {
+            "name": "get_name",
+            "type": "text",
+            "placeholder": {
+              "en": "Name of the request",
+              "nl": "Naam van de request"
+              }
+            }
           ]
         }
     ],
